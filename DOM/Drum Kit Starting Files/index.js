@@ -6,12 +6,14 @@ for (var i = 0; i < document.querySelectorAll(".drum").length; i++) {
 function handleClick() {
 	
 	var buttonInnerHTML = this.innerHTML;
-	makeSound(buttonInnerHTML)
+	makeSound(buttonInnerHTML);
+	buttonAnimation(buttonInnerHTML);
 	
 }
 
 document.addEventListener("keydown", function(event){
-	makeSound(event.key)
+	makeSound(event.key);
+	buttonAnimation(event.key);
 });
 
 function makeSound(key) {
@@ -44,4 +46,12 @@ function makeSound(key) {
 		var kickBass = new Audio("sounds/kick-bass.mp3");
 		kickBass.play();
 	}
+}
+
+function buttonAnimation(currentKey) {
+	var activeButton =  document.querySelector("." + currentKey);
+	activeButton.classList.add("pressed");
+	setTimeout(() => {
+		activeButton.classList.remove("pressed")
+	}, 100);
 }
